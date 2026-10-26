@@ -1,3 +1,50 @@
+# About this project
+
+This animal adoption board loads eight shelter animals from a JSON file.
+It shows a loading message while waiting and an error message if loading fails.
+Users can adopt or return animals, filter by availability, and sort by name or
+age. Each card also shows its arrival date and days at the shelter.
+
+## How to run it
+
+After cloning this repository, open a terminal in its folder and run:
+
+```sh
+npm install
+npm run dev
+```
+
+`npm install` downloads the dependencies recorded in `package.json` and
+`package-lock.json`, since `node_modules` is not included in the repository.
+Open the local address Vite prints. Stop the server with Ctrl+C.
+
+To build and preview the finished site:
+
+```sh
+npm run build
+npm run preview
+```
+
+## Dependency check
+
+Day.js formats each intake date and calculates how many days have passed since
+the animal arrived. Vite is a development dependency, while Day.js is a runtime
+dependency bundled into the site.
+
+The successful production build reports a JavaScript file of **10.70 kB**
+(**4.49 kB gzipped**). This is the size of the complete application bundle,
+including Day.js, rather than the size of Day.js alone.
+
+The same dates could be formatted with JavaScript's built-in Date and
+Intl.DateTimeFormat APIs, with additional code to calculate elapsed days.
+Day.js is useful here because both operations are short and readable. For an app
+with only these two date operations, the built-in APIs would also be reasonable
+if minimizing dependencies were the priority.
+
+The app keeps adoption changes in memory, so refreshing reloads the original data.
+
+---
+
 # Assignment 4 — Loading Data with async and npm
 
 You will continue building the animal adoption app in this assignment, but instead of working with an array of local data, you will fetch the data from a json file. While fetching the data, your interface will display a "loading" message, and depending on the response, show the resulting list or an error message.

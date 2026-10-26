@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 "use strict";
 
 /*
@@ -57,6 +59,12 @@ function displayAnimals(animalArray) {
 		const status = document.createElement("p");
 		status.textContent = animal.adopted ? "Adopted" : "Available";
 
+		// Day.js handles readable dates and elapsed days from the stored date.
+		const arrival = document.createElement("p");
+		const arrivedDate = dayjs(animal.intakeDate).format("MMM D, YYYY");
+		const daysAgo = dayjs().diff(animal.intakeDate, "day");
+		arrival.textContent = `Arrived ${arrivedDate} (${daysAgo} days ago)`;
+
 		const button = document.createElement("button");
 		button.type = "button";
 		button.textContent = animal.adopted ? "Return" : "Adopt";
@@ -67,7 +75,7 @@ function displayAnimals(animalArray) {
 		// remembers this card's animal (a closure) and passes its id along.
 		button.addEventListener("click", () => toggleAdoption(animal.id));
 
-		card.append(heading, details, status, button);
+		card.append(heading, details, status, arrival, button);
 		animalList.appendChild(card);
 	});
 }
