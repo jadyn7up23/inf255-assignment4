@@ -179,7 +179,8 @@ async function loadAnimals() {
 	try {
 		// await pauses only this async function until the request settles.
 		// The browser can still paint the loading message and respond to clicks.
-		const response = await fetch("/animals.json");
+		// Vite's base is "/" locally and the repository path on GitHub Pages.
+		const response = await fetch(`${import.meta.env.BASE_URL}animals.json`);
 
 		// fetch rejects for network failures, but resolves even for HTTP errors
 		// such as 404 or 500. Check ok so those responses also reach catch.
